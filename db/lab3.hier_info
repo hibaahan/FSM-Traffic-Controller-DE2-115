@@ -1,0 +1,1112 @@
+|trafficLightController
+sega <= dec_7seg:tens.o_segment_a
+Reset => fsm_controller:inst.i_reset_bar
+Reset => RisingEdge_Detector:inst21.i_reset_bar
+Reset => fourBitRegister_Counter:MS_Counter.i_resetBar
+Reset => fourBitRegister_Counter:SS_Counter.i_resetBar
+Reset => fourBitRegister:MSC_max.i_resetBar
+Reset => fourBitRegister:SSC_max.i_resetBar
+Reset => RisingEdge_Detector:inst19.i_reset_bar
+Reset => fourBitRegister_LoadHoldDec:Timer.i_resetBar
+Reset => debouncer_2:inst3.i_resetBar
+Clock => fsm_controller:inst.i_clock
+Clock => RisingEdge_Detector:inst21.i_clock
+Clock => fourBitRegister_Counter:MS_Counter.i_clock
+Clock => fourBitRegister_Counter:SS_Counter.i_clock
+Clock => fourBitRegister:MSC_max.i_clock
+Clock => fourBitRegister:SSC_max.i_clock
+Clock => RisingEdge_Detector:inst19.i_clock
+Clock => fourBitRegister_LoadHoldDec:Timer.i_clock
+Clock => debouncer_2:inst3.i_clock
+MSCMax[0] => fourBitRegister:MSC_max.i_Value[0]
+MSCMax[1] => fourBitRegister:MSC_max.i_Value[1]
+MSCMax[2] => fourBitRegister:MSC_max.i_Value[2]
+MSCMax[3] => fourBitRegister:MSC_max.i_Value[3]
+SSCMax[0] => fourBitRegister:SSC_max.i_Value[0]
+SSCMax[1] => fourBitRegister:SSC_max.i_Value[1]
+SSCMax[2] => fourBitRegister:SSC_max.i_Value[2]
+SSCMax[3] => fourBitRegister:SSC_max.i_Value[3]
+CarSensorSignal => debouncer_2:inst3.i_raw
+segb <= dec_7seg:tens.o_segment_b
+segc <= dec_7seg:tens.o_segment_c
+segd <= dec_7seg:tens.o_segment_d
+sege <= dec_7seg:tens.o_segment_e
+segf <= dec_7seg:tens.o_segment_f
+segg <= dec_7seg:tens.o_segment_g
+MSTL[0] <= fsm_controller:inst.o_MSTL[0]
+MSTL[1] <= fsm_controller:inst.o_MSTL[1]
+MSTL[2] <= fsm_controller:inst.o_MSTL[2]
+SSTL[0] <= fsm_controller:inst.o_SSTL[0]
+SSTL[1] <= fsm_controller:inst.o_SSTL[1]
+SSTL[2] <= fsm_controller:inst.o_SSTL[2]
+
+
+|trafficLightController|dec_7seg:tens
+i_hexDigit[0] => Mux0.IN19
+i_hexDigit[0] => Mux1.IN19
+i_hexDigit[0] => Mux2.IN19
+i_hexDigit[0] => Mux3.IN19
+i_hexDigit[0] => Mux4.IN19
+i_hexDigit[0] => Mux5.IN19
+i_hexDigit[0] => Mux6.IN19
+i_hexDigit[1] => Mux0.IN18
+i_hexDigit[1] => Mux1.IN18
+i_hexDigit[1] => Mux2.IN18
+i_hexDigit[1] => Mux3.IN18
+i_hexDigit[1] => Mux4.IN18
+i_hexDigit[1] => Mux5.IN18
+i_hexDigit[1] => Mux6.IN18
+i_hexDigit[2] => Mux0.IN17
+i_hexDigit[2] => Mux1.IN17
+i_hexDigit[2] => Mux2.IN17
+i_hexDigit[2] => Mux3.IN17
+i_hexDigit[2] => Mux4.IN17
+i_hexDigit[2] => Mux5.IN17
+i_hexDigit[2] => Mux6.IN17
+i_hexDigit[3] => Mux0.IN16
+i_hexDigit[3] => Mux1.IN16
+i_hexDigit[3] => Mux2.IN16
+i_hexDigit[3] => Mux3.IN16
+i_hexDigit[3] => Mux4.IN16
+i_hexDigit[3] => Mux5.IN16
+i_hexDigit[3] => Mux6.IN16
+o_segment_a <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+o_segment_b <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+o_segment_c <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+o_segment_d <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+o_segment_e <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+o_segment_f <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+o_segment_g <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|Mux2_1_4bit:inst4
+i_val_0[0] => int_and1[0].IN0
+i_val_0[1] => int_and1[1].IN0
+i_val_0[2] => int_and1[2].IN0
+i_val_0[3] => int_and1[3].IN0
+i_val_1[0] => int_and2[0].IN0
+i_val_1[1] => int_and2[1].IN0
+i_val_1[2] => int_and2[2].IN0
+i_val_1[3] => int_and2[3].IN0
+i_sel => int_and2[0].IN1
+i_sel => int_and2[1].IN1
+i_sel => int_and2[2].IN1
+i_sel => int_and2[3].IN1
+i_sel => int_and1[0].IN1
+i_sel => int_and1[1].IN1
+i_sel => int_and1[2].IN1
+i_sel => int_and1[3].IN1
+o_val[0] <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+o_val[1] <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+o_val[2] <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+o_val[3] <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fsm_controller:inst
+i_reset_bar => enARdFF_2:S0_Q.i_resetBar
+i_reset_bar => enARdFF_2:S1_Q.i_resetBar
+i_reset_bar => enARdFF_2:S2_Q.i_resetBar
+i_reset_bar => enARdFF_2:S3_Q.i_resetBar
+i_clock => enARdFF_2:S0_Q.i_clock
+i_clock => enARdFF_2:S1_Q.i_clock
+i_clock => enARdFF_2:S2_Q.i_clock
+i_clock => enARdFF_2:S3_Q.i_clock
+i_Counter_expired => S0_intermediate.IN0
+i_Counter_expired => S1_next.IN1
+i_Counter_expired => S3_next.IN1
+i_Counter_expired => S2_next.IN1
+i_MST_done => S2_next.IN1
+i_MST_done => S1_next.IN1
+i_SST_done => S0_next.IN1
+i_SST_done => S3_next.IN1
+i_SSCS => S0_intermediate.IN1
+i_SSCS => S1_next.IN1
+o_set_timer <= o_set_timer.DB_MAX_OUTPUT_PORT_TYPE
+o_enable_timer <= o_enable_timer.DB_MAX_OUTPUT_PORT_TYPE
+o_set_counter <= o_set_counter.DB_MAX_OUTPUT_PORT_TYPE
+o_enable_counter <= o_enable_counter.DB_MAX_OUTPUT_PORT_TYPE
+o_msc_ssc_select <= enARdFF_2:S2_Q.o_q
+o_MSTL[0] <= enARdFF_2:S0_Q.o_q
+o_MSTL[1] <= enARdFF_2:S1_Q.o_q
+o_MSTL[2] <= o_MSTL.DB_MAX_OUTPUT_PORT_TYPE
+o_SSTL[0] <= enARdFF_2:S2_Q.o_q
+o_SSTL[1] <= enARdFF_2:S3_Q.o_q
+o_SSTL[2] <= non_active.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fsm_controller:inst|enARdFF_2:S0_Q
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fsm_controller:inst|enARdFF_2:S1_Q
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fsm_controller:inst|enARdFF_2:S2_Q
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fsm_controller:inst|enARdFF_2:S3_Q
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|RisingEdge_Detector:inst21
+i_reset_bar => enARdFF_2:EdgeFF.i_resetBar
+i_clock => enARdFF_2:EdgeFF.i_clock
+i_signal => o_pulse.IN1
+i_signal => enARdFF_2:EdgeFF.i_d
+o_pulse <= o_pulse.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|RisingEdge_Detector:inst21|enARdFF_2:EdgeFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitComparator:inst13
+i_Ai[0] => oneBitComparator:comp0.i_Ai
+i_Ai[1] => oneBitComparator:comp1.i_Ai
+i_Ai[2] => oneBitComparator:comp2.i_Ai
+i_Ai[3] => oneBitComparator:comp3.i_Ai
+i_Bi[0] => oneBitComparator:comp0.i_Bi
+i_Bi[1] => oneBitComparator:comp1.i_Bi
+i_Bi[2] => oneBitComparator:comp2.i_Bi
+i_Bi[3] => oneBitComparator:comp3.i_Bi
+o_GT <= oneBitComparator:comp0.o_GT
+o_LT <= oneBitComparator:comp0.o_LT
+o_EQ <= o_EQ.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitComparator:inst13|oneBitComparator:comp3
+i_GTPrevious => int_GT2.IN0
+i_GTPrevious => int_GT1.IN0
+i_GTPrevious => int_LT2.IN0
+i_LTPrevious => int_LT2.IN1
+i_LTPrevious => int_GT1.IN1
+i_LTPrevious => int_GT2.IN1
+i_Ai => int_GT1.IN1
+i_Ai => int_LT1.IN1
+i_Bi => int_LT1.IN1
+i_Bi => int_GT1.IN1
+o_GT <= int_GT.DB_MAX_OUTPUT_PORT_TYPE
+o_LT <= int_LT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitComparator:inst13|oneBitComparator:comp2
+i_GTPrevious => int_GT2.IN0
+i_GTPrevious => int_GT1.IN0
+i_GTPrevious => int_LT2.IN0
+i_LTPrevious => int_LT2.IN1
+i_LTPrevious => int_GT1.IN1
+i_LTPrevious => int_GT2.IN1
+i_Ai => int_GT1.IN1
+i_Ai => int_LT1.IN1
+i_Bi => int_LT1.IN1
+i_Bi => int_GT1.IN1
+o_GT <= int_GT.DB_MAX_OUTPUT_PORT_TYPE
+o_LT <= int_LT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitComparator:inst13|oneBitComparator:comp1
+i_GTPrevious => int_GT2.IN0
+i_GTPrevious => int_GT1.IN0
+i_GTPrevious => int_LT2.IN0
+i_LTPrevious => int_LT2.IN1
+i_LTPrevious => int_GT1.IN1
+i_LTPrevious => int_GT2.IN1
+i_Ai => int_GT1.IN1
+i_Ai => int_LT1.IN1
+i_Bi => int_LT1.IN1
+i_Bi => int_GT1.IN1
+o_GT <= int_GT.DB_MAX_OUTPUT_PORT_TYPE
+o_LT <= int_LT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitComparator:inst13|oneBitComparator:comp0
+i_GTPrevious => int_GT2.IN0
+i_GTPrevious => int_GT1.IN0
+i_GTPrevious => int_LT2.IN0
+i_LTPrevious => int_LT2.IN1
+i_LTPrevious => int_GT1.IN1
+i_LTPrevious => int_GT2.IN1
+i_Ai => int_GT1.IN1
+i_Ai => int_LT1.IN1
+i_Bi => int_LT1.IN1
+i_Bi => int_GT1.IN1
+o_GT <= int_GT.DB_MAX_OUTPUT_PORT_TYPE
+o_LT <= int_LT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|Mux2_1_4bit:inst1
+i_val_0[0] => int_and1[0].IN0
+i_val_0[1] => int_and1[1].IN0
+i_val_0[2] => int_and1[2].IN0
+i_val_0[3] => int_and1[3].IN0
+i_val_1[0] => int_and2[0].IN0
+i_val_1[1] => int_and2[1].IN0
+i_val_1[2] => int_and2[2].IN0
+i_val_1[3] => int_and2[3].IN0
+i_sel => int_and2[0].IN1
+i_sel => int_and2[1].IN1
+i_sel => int_and2[2].IN1
+i_sel => int_and2[3].IN1
+i_sel => int_and1[0].IN1
+i_sel => int_and1[1].IN1
+i_sel => int_and1[2].IN1
+i_sel => int_and1[3].IN1
+o_val[0] <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+o_val[1] <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+o_val[2] <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+o_val[3] <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter
+i_resetBar => enARdFF_2:bit3FF.i_resetBar
+i_resetBar => enARdFF_2:bit2FF.i_resetBar
+i_resetBar => enARdFF_2:bit1FF.i_resetBar
+i_resetBar => enARdFF_2:bit0FF.i_resetBar
+i_clock => enARdFF_2:bit3FF.i_clock
+i_clock => enARdFF_2:bit2FF.i_clock
+i_clock => enARdFF_2:bit1FF.i_clock
+i_clock => enARdFF_2:bit0FF.i_clock
+i_sel_0 => Mux4_1:bit3MUX.i_sel_0
+i_sel_0 => Mux4_1:bit2MUX.i_sel_0
+i_sel_0 => Mux4_1:bit1MUX.i_sel_0
+i_sel_0 => Mux4_1:bit0MUX.i_sel_0
+i_sel_1 => Mux4_1:bit3MUX.i_sel_1
+i_sel_1 => Mux4_1:bit2MUX.i_sel_1
+i_sel_1 => Mux4_1:bit1MUX.i_sel_1
+i_sel_1 => Mux4_1:bit0MUX.i_sel_1
+i_Value[0] => Mux4_1:bit0MUX.i_val_1
+i_Value[1] => Mux4_1:bit1MUX.i_val_1
+i_Value[2] => Mux4_1:bit2MUX.i_val_1
+i_Value[3] => Mux4_1:bit3MUX.i_val_1
+o_Value[0] <= enARdFF_2:bit0FF.o_q
+o_Value[1] <= enARdFF_2:bit1FF.o_q
+o_Value[2] <= enARdFF_2:bit2FF.o_q
+o_Value[3] <= enARdFF_2:bit3FF.o_q
+o_zero <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit3MUX
+i_val_0 => Mux2_1:Mux2_1_1.i_val_0
+i_val_1 => Mux2_1:Mux2_1_1.i_val_1
+i_val_2 => Mux2_1:Mux2_1_2.i_val_0
+i_val_3 => Mux2_1:Mux2_1_2.i_val_1
+i_sel_0 => Mux2_1:Mux2_1_1.i_sel
+i_sel_0 => Mux2_1:Mux2_1_2.i_sel
+i_sel_1 => Mux2_1:Mux2_1_3.i_sel
+o_val <= Mux2_1:Mux2_1_3.o_val
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit3MUX|Mux2_1:Mux2_1_1
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit3MUX|Mux2_1:Mux2_1_2
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit3MUX|Mux2_1:Mux2_1_3
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|enARdFF_2:bit3FF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit2MUX
+i_val_0 => Mux2_1:Mux2_1_1.i_val_0
+i_val_1 => Mux2_1:Mux2_1_1.i_val_1
+i_val_2 => Mux2_1:Mux2_1_2.i_val_0
+i_val_3 => Mux2_1:Mux2_1_2.i_val_1
+i_sel_0 => Mux2_1:Mux2_1_1.i_sel
+i_sel_0 => Mux2_1:Mux2_1_2.i_sel
+i_sel_1 => Mux2_1:Mux2_1_3.i_sel
+o_val <= Mux2_1:Mux2_1_3.o_val
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit2MUX|Mux2_1:Mux2_1_1
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit2MUX|Mux2_1:Mux2_1_2
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit2MUX|Mux2_1:Mux2_1_3
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|enARdFF_2:bit2FF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit1MUX
+i_val_0 => Mux2_1:Mux2_1_1.i_val_0
+i_val_1 => Mux2_1:Mux2_1_1.i_val_1
+i_val_2 => Mux2_1:Mux2_1_2.i_val_0
+i_val_3 => Mux2_1:Mux2_1_2.i_val_1
+i_sel_0 => Mux2_1:Mux2_1_1.i_sel
+i_sel_0 => Mux2_1:Mux2_1_2.i_sel
+i_sel_1 => Mux2_1:Mux2_1_3.i_sel
+o_val <= Mux2_1:Mux2_1_3.o_val
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit1MUX|Mux2_1:Mux2_1_1
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit1MUX|Mux2_1:Mux2_1_2
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit1MUX|Mux2_1:Mux2_1_3
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|enARdFF_2:bit1FF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit0MUX
+i_val_0 => Mux2_1:Mux2_1_1.i_val_0
+i_val_1 => Mux2_1:Mux2_1_1.i_val_1
+i_val_2 => Mux2_1:Mux2_1_2.i_val_0
+i_val_3 => Mux2_1:Mux2_1_2.i_val_1
+i_sel_0 => Mux2_1:Mux2_1_1.i_sel
+i_sel_0 => Mux2_1:Mux2_1_2.i_sel
+i_sel_1 => Mux2_1:Mux2_1_3.i_sel
+o_val <= Mux2_1:Mux2_1_3.o_val
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit0MUX|Mux2_1:Mux2_1_1
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit0MUX|Mux2_1:Mux2_1_2
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|Mux4_1:bit0MUX|Mux2_1:Mux2_1_3
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:MS_Counter|enARdFF_2:bit0FF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|lpm_constant1:inst26
+result[0] <= lpm_constant:LPM_CONSTANT_component.result[0]
+result[1] <= lpm_constant:LPM_CONSTANT_component.result[1]
+result[2] <= lpm_constant:LPM_CONSTANT_component.result[2]
+result[3] <= lpm_constant:LPM_CONSTANT_component.result[3]
+
+
+|trafficLightController|lpm_constant1:inst26|lpm_constant:LPM_CONSTANT_component
+result[0] <= <GND>
+result[1] <= <GND>
+result[2] <= <GND>
+result[3] <= <GND>
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter
+i_resetBar => enARdFF_2:bit3FF.i_resetBar
+i_resetBar => enARdFF_2:bit2FF.i_resetBar
+i_resetBar => enARdFF_2:bit1FF.i_resetBar
+i_resetBar => enARdFF_2:bit0FF.i_resetBar
+i_clock => enARdFF_2:bit3FF.i_clock
+i_clock => enARdFF_2:bit2FF.i_clock
+i_clock => enARdFF_2:bit1FF.i_clock
+i_clock => enARdFF_2:bit0FF.i_clock
+i_sel_0 => Mux4_1:bit3MUX.i_sel_0
+i_sel_0 => Mux4_1:bit2MUX.i_sel_0
+i_sel_0 => Mux4_1:bit1MUX.i_sel_0
+i_sel_0 => Mux4_1:bit0MUX.i_sel_0
+i_sel_1 => Mux4_1:bit3MUX.i_sel_1
+i_sel_1 => Mux4_1:bit2MUX.i_sel_1
+i_sel_1 => Mux4_1:bit1MUX.i_sel_1
+i_sel_1 => Mux4_1:bit0MUX.i_sel_1
+i_Value[0] => Mux4_1:bit0MUX.i_val_1
+i_Value[1] => Mux4_1:bit1MUX.i_val_1
+i_Value[2] => Mux4_1:bit2MUX.i_val_1
+i_Value[3] => Mux4_1:bit3MUX.i_val_1
+o_Value[0] <= enARdFF_2:bit0FF.o_q
+o_Value[1] <= enARdFF_2:bit1FF.o_q
+o_Value[2] <= enARdFF_2:bit2FF.o_q
+o_Value[3] <= enARdFF_2:bit3FF.o_q
+o_zero <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit3MUX
+i_val_0 => Mux2_1:Mux2_1_1.i_val_0
+i_val_1 => Mux2_1:Mux2_1_1.i_val_1
+i_val_2 => Mux2_1:Mux2_1_2.i_val_0
+i_val_3 => Mux2_1:Mux2_1_2.i_val_1
+i_sel_0 => Mux2_1:Mux2_1_1.i_sel
+i_sel_0 => Mux2_1:Mux2_1_2.i_sel
+i_sel_1 => Mux2_1:Mux2_1_3.i_sel
+o_val <= Mux2_1:Mux2_1_3.o_val
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit3MUX|Mux2_1:Mux2_1_1
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit3MUX|Mux2_1:Mux2_1_2
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit3MUX|Mux2_1:Mux2_1_3
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|enARdFF_2:bit3FF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit2MUX
+i_val_0 => Mux2_1:Mux2_1_1.i_val_0
+i_val_1 => Mux2_1:Mux2_1_1.i_val_1
+i_val_2 => Mux2_1:Mux2_1_2.i_val_0
+i_val_3 => Mux2_1:Mux2_1_2.i_val_1
+i_sel_0 => Mux2_1:Mux2_1_1.i_sel
+i_sel_0 => Mux2_1:Mux2_1_2.i_sel
+i_sel_1 => Mux2_1:Mux2_1_3.i_sel
+o_val <= Mux2_1:Mux2_1_3.o_val
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit2MUX|Mux2_1:Mux2_1_1
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit2MUX|Mux2_1:Mux2_1_2
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit2MUX|Mux2_1:Mux2_1_3
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|enARdFF_2:bit2FF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit1MUX
+i_val_0 => Mux2_1:Mux2_1_1.i_val_0
+i_val_1 => Mux2_1:Mux2_1_1.i_val_1
+i_val_2 => Mux2_1:Mux2_1_2.i_val_0
+i_val_3 => Mux2_1:Mux2_1_2.i_val_1
+i_sel_0 => Mux2_1:Mux2_1_1.i_sel
+i_sel_0 => Mux2_1:Mux2_1_2.i_sel
+i_sel_1 => Mux2_1:Mux2_1_3.i_sel
+o_val <= Mux2_1:Mux2_1_3.o_val
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit1MUX|Mux2_1:Mux2_1_1
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit1MUX|Mux2_1:Mux2_1_2
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit1MUX|Mux2_1:Mux2_1_3
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|enARdFF_2:bit1FF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit0MUX
+i_val_0 => Mux2_1:Mux2_1_1.i_val_0
+i_val_1 => Mux2_1:Mux2_1_1.i_val_1
+i_val_2 => Mux2_1:Mux2_1_2.i_val_0
+i_val_3 => Mux2_1:Mux2_1_2.i_val_1
+i_sel_0 => Mux2_1:Mux2_1_1.i_sel
+i_sel_0 => Mux2_1:Mux2_1_2.i_sel
+i_sel_1 => Mux2_1:Mux2_1_3.i_sel
+o_val <= Mux2_1:Mux2_1_3.o_val
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit0MUX|Mux2_1:Mux2_1_1
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit0MUX|Mux2_1:Mux2_1_2
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|Mux4_1:bit0MUX|Mux2_1:Mux2_1_3
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_Counter:SS_Counter|enARdFF_2:bit0FF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|Mux2_1_4bit:inst2
+i_val_0[0] => int_and1[0].IN0
+i_val_0[1] => int_and1[1].IN0
+i_val_0[2] => int_and1[2].IN0
+i_val_0[3] => int_and1[3].IN0
+i_val_1[0] => int_and2[0].IN0
+i_val_1[1] => int_and2[1].IN0
+i_val_1[2] => int_and2[2].IN0
+i_val_1[3] => int_and2[3].IN0
+i_sel => int_and2[0].IN1
+i_sel => int_and2[1].IN1
+i_sel => int_and2[2].IN1
+i_sel => int_and2[3].IN1
+i_sel => int_and1[0].IN1
+i_sel => int_and1[1].IN1
+i_sel => int_and1[2].IN1
+i_sel => int_and1[3].IN1
+o_val[0] <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+o_val[1] <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+o_val[2] <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+o_val[3] <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister:MSC_max
+i_resetBar => enARdFF_2:msb.i_resetBar
+i_resetBar => enARdFF_2:ssb.i_resetBar
+i_resetBar => enARdFF_2:tsb.i_resetBar
+i_resetBar => enARdFF_2:lsb.i_resetBar
+i_load => enARdFF_2:msb.i_enable
+i_load => enARdFF_2:ssb.i_enable
+i_load => enARdFF_2:tsb.i_enable
+i_load => enARdFF_2:lsb.i_enable
+i_clock => enARdFF_2:msb.i_clock
+i_clock => enARdFF_2:ssb.i_clock
+i_clock => enARdFF_2:tsb.i_clock
+i_clock => enARdFF_2:lsb.i_clock
+i_Value[0] => enARdFF_2:lsb.i_d
+i_Value[1] => enARdFF_2:tsb.i_d
+i_Value[2] => enARdFF_2:ssb.i_d
+i_Value[3] => enARdFF_2:msb.i_d
+o_Value[0] <= enARdFF_2:lsb.o_q
+o_Value[1] <= enARdFF_2:tsb.o_q
+o_Value[2] <= enARdFF_2:ssb.o_q
+o_Value[3] <= enARdFF_2:msb.o_q
+
+
+|trafficLightController|fourBitRegister:MSC_max|enARdFF_2:msb
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister:MSC_max|enARdFF_2:ssb
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister:MSC_max|enARdFF_2:tsb
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister:MSC_max|enARdFF_2:lsb
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister:SSC_max
+i_resetBar => enARdFF_2:msb.i_resetBar
+i_resetBar => enARdFF_2:ssb.i_resetBar
+i_resetBar => enARdFF_2:tsb.i_resetBar
+i_resetBar => enARdFF_2:lsb.i_resetBar
+i_load => enARdFF_2:msb.i_enable
+i_load => enARdFF_2:ssb.i_enable
+i_load => enARdFF_2:tsb.i_enable
+i_load => enARdFF_2:lsb.i_enable
+i_clock => enARdFF_2:msb.i_clock
+i_clock => enARdFF_2:ssb.i_clock
+i_clock => enARdFF_2:tsb.i_clock
+i_clock => enARdFF_2:lsb.i_clock
+i_Value[0] => enARdFF_2:lsb.i_d
+i_Value[1] => enARdFF_2:tsb.i_d
+i_Value[2] => enARdFF_2:ssb.i_d
+i_Value[3] => enARdFF_2:msb.i_d
+o_Value[0] <= enARdFF_2:lsb.o_q
+o_Value[1] <= enARdFF_2:tsb.o_q
+o_Value[2] <= enARdFF_2:ssb.o_q
+o_Value[3] <= enARdFF_2:msb.o_q
+
+
+|trafficLightController|fourBitRegister:SSC_max|enARdFF_2:msb
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister:SSC_max|enARdFF_2:ssb
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister:SSC_max|enARdFF_2:tsb
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister:SSC_max|enARdFF_2:lsb
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|RisingEdge_Detector:inst19
+i_reset_bar => enARdFF_2:EdgeFF.i_resetBar
+i_clock => enARdFF_2:EdgeFF.i_clock
+i_signal => o_pulse.IN1
+i_signal => enARdFF_2:EdgeFF.i_d
+o_pulse <= o_pulse.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|RisingEdge_Detector:inst19|enARdFF_2:EdgeFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer
+i_resetBar => enARdFF_2:bit3FF.i_resetBar
+i_resetBar => enARdFF_2:bit2FF.i_resetBar
+i_resetBar => enARdFF_2:bit1FF.i_resetBar
+i_resetBar => enARdFF_2:bit0FF.i_resetBar
+i_clock => enARdFF_2:bit3FF.i_clock
+i_clock => enARdFF_2:bit2FF.i_clock
+i_clock => enARdFF_2:bit1FF.i_clock
+i_clock => enARdFF_2:bit0FF.i_clock
+i_sel_0 => Mux4_1:bit3MUX.i_sel_0
+i_sel_0 => Mux4_1:bit2MUX.i_sel_0
+i_sel_0 => Mux4_1:bit1MUX.i_sel_0
+i_sel_0 => Mux4_1:bit0MUX.i_sel_0
+i_sel_1 => Mux4_1:bit3MUX.i_sel_1
+i_sel_1 => Mux4_1:bit2MUX.i_sel_1
+i_sel_1 => Mux4_1:bit1MUX.i_sel_1
+i_sel_1 => Mux4_1:bit0MUX.i_sel_1
+i_Value[0] => Mux4_1:bit0MUX.i_val_1
+i_Value[1] => Mux4_1:bit1MUX.i_val_1
+i_Value[2] => Mux4_1:bit2MUX.i_val_1
+i_Value[3] => Mux4_1:bit3MUX.i_val_1
+o_Value[0] <= enARdFF_2:bit0FF.o_q
+o_Value[1] <= enARdFF_2:bit1FF.o_q
+o_Value[2] <= enARdFF_2:bit2FF.o_q
+o_Value[3] <= enARdFF_2:bit3FF.o_q
+o_zero <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit3MUX
+i_val_0 => Mux2_1:Mux2_1_1.i_val_0
+i_val_1 => Mux2_1:Mux2_1_1.i_val_1
+i_val_2 => Mux2_1:Mux2_1_2.i_val_0
+i_val_3 => Mux2_1:Mux2_1_2.i_val_1
+i_sel_0 => Mux2_1:Mux2_1_1.i_sel
+i_sel_0 => Mux2_1:Mux2_1_2.i_sel
+i_sel_1 => Mux2_1:Mux2_1_3.i_sel
+o_val <= Mux2_1:Mux2_1_3.o_val
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit3MUX|Mux2_1:Mux2_1_1
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit3MUX|Mux2_1:Mux2_1_2
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit3MUX|Mux2_1:Mux2_1_3
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|enARdFF_2:bit3FF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit2MUX
+i_val_0 => Mux2_1:Mux2_1_1.i_val_0
+i_val_1 => Mux2_1:Mux2_1_1.i_val_1
+i_val_2 => Mux2_1:Mux2_1_2.i_val_0
+i_val_3 => Mux2_1:Mux2_1_2.i_val_1
+i_sel_0 => Mux2_1:Mux2_1_1.i_sel
+i_sel_0 => Mux2_1:Mux2_1_2.i_sel
+i_sel_1 => Mux2_1:Mux2_1_3.i_sel
+o_val <= Mux2_1:Mux2_1_3.o_val
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit2MUX|Mux2_1:Mux2_1_1
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit2MUX|Mux2_1:Mux2_1_2
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit2MUX|Mux2_1:Mux2_1_3
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|enARdFF_2:bit2FF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit1MUX
+i_val_0 => Mux2_1:Mux2_1_1.i_val_0
+i_val_1 => Mux2_1:Mux2_1_1.i_val_1
+i_val_2 => Mux2_1:Mux2_1_2.i_val_0
+i_val_3 => Mux2_1:Mux2_1_2.i_val_1
+i_sel_0 => Mux2_1:Mux2_1_1.i_sel
+i_sel_0 => Mux2_1:Mux2_1_2.i_sel
+i_sel_1 => Mux2_1:Mux2_1_3.i_sel
+o_val <= Mux2_1:Mux2_1_3.o_val
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit1MUX|Mux2_1:Mux2_1_1
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit1MUX|Mux2_1:Mux2_1_2
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit1MUX|Mux2_1:Mux2_1_3
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|enARdFF_2:bit1FF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit0MUX
+i_val_0 => Mux2_1:Mux2_1_1.i_val_0
+i_val_1 => Mux2_1:Mux2_1_1.i_val_1
+i_val_2 => Mux2_1:Mux2_1_2.i_val_0
+i_val_3 => Mux2_1:Mux2_1_2.i_val_1
+i_sel_0 => Mux2_1:Mux2_1_1.i_sel
+i_sel_0 => Mux2_1:Mux2_1_2.i_sel
+i_sel_1 => Mux2_1:Mux2_1_3.i_sel
+o_val <= Mux2_1:Mux2_1_3.o_val
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit0MUX|Mux2_1:Mux2_1_1
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit0MUX|Mux2_1:Mux2_1_2
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|Mux4_1:bit0MUX|Mux2_1:Mux2_1_3
+i_val_0 => int_and1.IN0
+i_val_1 => int_and2.IN0
+i_sel => int_and2.IN1
+i_sel => int_and1.IN1
+o_val <= int_final_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|fourBitRegister_LoadHoldDec:Timer|enARdFF_2:bit0FF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|lpm_constant0:inst18
+result[0] <= lpm_constant:LPM_CONSTANT_component.result[0]
+result[1] <= lpm_constant:LPM_CONSTANT_component.result[1]
+result[2] <= lpm_constant:LPM_CONSTANT_component.result[2]
+result[3] <= lpm_constant:LPM_CONSTANT_component.result[3]
+
+
+|trafficLightController|lpm_constant0:inst18|lpm_constant:LPM_CONSTANT_component
+result[0] <= <VCC>
+result[1] <= <VCC>
+result[2] <= <VCC>
+result[3] <= <VCC>
+
+
+|trafficLightController|debouncer_2:inst3
+i_resetBar => enARdFF_2:first.i_resetBar
+i_resetBar => enARdFF_2:second.i_resetBar
+i_clock => enARdFF_2:first.i_clock
+i_clock => enARdFF_2:second.i_clock
+i_raw => int_d1Input.IN1
+i_raw => int_d2Input.IN1
+o_clean <= int_debouncedRaw.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|debouncer_2:inst3|enARdFF_2:first
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trafficLightController|debouncer_2:inst3|enARdFF_2:second
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+

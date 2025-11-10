@@ -1,0 +1,12 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY RisingEdge_Detector IS 
+PORT(
+i_reset_bar: in std_logic;
+i_clock    :in std_logic;
+
+);
+ END RisingEdge_Detector ;
+
+ ARCHITECTURE rtl OF RisingEdge_Detector IS

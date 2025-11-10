@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="lab3">
+		<CBX_INST_ENTRY INSTANCE_NAME="|trafficLightController|lpm_constant0:inst18|lpm_constant:LPM_CONSTANT_component" CBX_FILE_NAME="lpm_constant_sf6.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|trafficLightController|lpm_constant1:inst26|lpm_constant:LPM_CONSTANT_component" CBX_FILE_NAME="lpm_constant_6e6.tdf"/>
+	</PROJECT>
+</LOG_ROOT>
