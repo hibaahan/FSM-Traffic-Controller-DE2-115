@@ -48,14 +48,24 @@ Additional supporting entities used within the top-level architecture, all coded
 ---
 🧩 Top-Level Design
 Below is the Top Entity schematic created in Quartus II, showing how all components are interconnected:
-![Top Entity Diagram](images/top_entity.png)
+<img width="1075" height="558" alt="Top_entity" src="https://github.com/user-attachments/assets/2346b793-c495-4c21-a64d-f848e6dd1dc8" />
+
+
 This top-level block diagram connects the FSM controller, timing modules, and input/output interfaces for the complete traffic light system.
 
 ⚙️ Simulation Results
+
 To validate functionality before FPGA implementation, simulations were performed in Quartus II / ModelSim.
 (Add screenshots of your waveform simulations — for example)
-![FSM Simulation](images/fsm_simulation.png)
-![Timing Simulation](images/timing_waveform.png)
+<img width="1432" height="569" alt="Simulation" src="https://github.com/user-attachments/assets/4f175757-e2a1-40f4-a158-4268d98757a8" />
+
+In the waveform:
+MSTL and SSTL represent the Main Street and Side Street traffic light signals.
+Each signal is a 3-bit vector encoded as = (Red, Yellow, Green)
+100 → Red ON
+010 → Yellow ON
+001 → Green ON
+The transitions confirm the correct light sequence and mutual exclusivity between the two directions.
 
 ## ✅ Summary
 A complete, working, and hardware-tested traffic light controller demonstrating:
